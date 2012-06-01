@@ -62,6 +62,7 @@ class PurgeRequest(object):
             
     def purge(self):
         self.results    =   []
+        self.urls       =   list(set(self.urls)) # removes duplicates
         num_urls        =   len(self.urls)
         while len(self.urls):
             urls            =   self.urls[:100]
