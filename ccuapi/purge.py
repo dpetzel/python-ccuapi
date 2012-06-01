@@ -1,4 +1,4 @@
-from akamai import AKAMAI_USERNAME, AKAMAI_PASSWORD, AKAMAI_NOTIFY_EMAIL, AkamaiException
+from ccuapi import AKAMAI_USERNAME, AKAMAI_PASSWORD, AKAMAI_NOTIFY_EMAIL, AkamaiException
 
 import urllib, os
 from suds.client import Client
