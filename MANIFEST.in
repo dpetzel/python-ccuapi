@@ -1,0 +1,6 @@
+recursive-include ccuapi *.py *.wsdl
+include setup.py
+include README
+include LICENSE
+include requirements.txt
+include MANIFEST.in
