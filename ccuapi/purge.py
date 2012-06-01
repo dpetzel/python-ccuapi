@@ -20,7 +20,7 @@ class PurgeRequest(object):
             imp             =   doctor.Import('http://schemas.xmlsoap.org/soap/encoding/')
             imp.filter.add('http://www.akamai.com/purge')
             impdoc          =   doctor.ImportDoctor(imp)
-            self.client     =   Client("file://%s" % self.wsdl, doctor = impdoc)
+            self.client     =   Client("file://%s" % self.wsdl, doctor = impdoc, cache = None)
         self.username   =   username
         if not self.username:
             raise AkamaiException('Username not provided')
