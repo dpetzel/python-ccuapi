@@ -24,10 +24,10 @@ if django_settings:
     except ImportError:
         pass # this isn't being run inside a Django environment
 
-config  =   ConfigParser.SafeConfigParser()
-config.readfp(open(os.path.expanduser('~/.akamai')))
 
 if not AKAMAI_USERNAME or not AKAMAI_PASSWORD:
+    config  =   ConfigParser.SafeConfigParser()
+    config.readfp(open(os.path.expanduser('~/.akamai')))
     if os.path.exists(os.path.expanduser('~/.akamai')):
         if config.has_section('Credentials'):
             if config.has_option('Credentials', 'username'):
