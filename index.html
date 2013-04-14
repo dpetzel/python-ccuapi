@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Python-ccuapi : Python wrapper around Akamai ccuapi" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Python-ccuapi</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/dryan/python-ccuapi">View on GitHub</a>
+
+          <h1 id="project_title">Python-ccuapi</h1>
+          <h2 id="project_tagline">Python wrapper around Akamai ccuapi</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/dryan/python-ccuapi/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/dryan/python-ccuapi/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <p>Hat tip to <a href="https://github.com/beathan/django-akamai">https://github.com/beathan/django-akamai</a> for inspiring the code.</p>
+
+<h2>Credentials</h2>
+
+<p>Credentials can be provided in 1 of 3 ways:</p>
+
+<ol>
+<li>AKAMAI_USERNAME and AKAMAI_PASSWORD environment variables.</li>
+<li>A <code>.akamai</code> config file in the user's home directory. <a href="https://github.com/dryan/python-ccuapi/blob/master/.akamai.sample">(Sample config included as .akamai.sample)</a>
+</li>
+<li>Passing <code>username</code> and <code>password</code> kwargs to ccuapi.purge.PurgeRequest on initialization.</li>
+</ol><h2>Email Notifications</h2>
+
+<p>One or more comma-separated email addresses may be set to receive notifications when a content purge is complete. These are provided in 1 of 3 ways:</p>
+
+<ol>
+<li>AKAMAI_NOTIFY_EMAIL environment variable.</li>
+<li>In the <code>.akamai</code> config file.</li>
+<li>Passing <code>email</code> kwarg to ccuapi.purge.PurgeRequest on initialization.</li>
+</ol><h2>Usage</h2>
+
+<pre><code>from ccuapi.purge import PurgeRequest
+purger  =   PurgeRequest()
+purger.add('http://domain.com') # this can be a string, list of strings, Django QuerySet or Django object with the `get_absolute_url` method defined
+results =   purger.purge() # returns a list of responses from Akamai, 1 per 100 URLs sent
+</code></pre>
+
+<h2>Command Line Usage</h2>
+
+<pre><code>ccu_purge http://domain.com
+</code></pre>
+
+<p>Run <code>ccu_purge -h</code> for additional options.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Python-ccuapi maintained by <a href="https://github.com/dryan">dryan</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-3625251-4");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
