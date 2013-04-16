@@ -40,9 +40,7 @@ if not AKAMAI_USERNAME or not AKAMAI_PASSWORD:
                 raise AkamaiConfigException('.akamai config is missing username')
         else:
             raise AkamaiConfigException('.akamai config is missing the Credentials section')
-    else:
-        print('WARNING: AKAMI credentials not found as environment variables or in %s. '
-              'They must be passed as kwargs to PurgeRequest on initialization' % os.path.expanduser('~/.akamai'))
+    # If none of the above holds true, AKAMAI credentials must be passed as kwargs to PurgeRequest on initialization
 
 if not AKAMAI_NOTIFY_EMAIL and config.has_section('Notifications') and config.has_option('Notifications', 'email'):
     AKAMAI_NOTIFY_EMAIL =   config.get('Notifications', 'email')
