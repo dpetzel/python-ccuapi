@@ -33,3 +33,19 @@ One or more comma-separated email addresses may be set to receive notifications 
 	ccu_purge http://domain.com
 	
 Run `ccu_purge -h` for additional options.
+
+## Using a proxy server?
+
+If you're using this library on a server that uses an http/https proxy, you'll likely hit  `Connection Timeout` issues
+because suds ignores the environment proxy variables, as [described here](http://stackoverflow.com/questions/12414600/suds-ignoring-proxy-setting).
+
+One simple solution:
+
+    #Hat tip: http://stackoverflow.com/questions/12414600/suds-ignoring-proxy-setting
+    from suds.transport.http import HttpTransport as SudsHttpTransport
+    class EnvProxyHonoringTransport(SudsHttpTransport):
+        def u2handlers(self):
+            return []
+
+    purger = PurgeRequest(...)
+    purger.client.set_options(transport = EnvProxyHonoringTransport())
