@@ -33,7 +33,8 @@
       <section id="main_content" class="inner">
         <p>Hat tip to <a href="https://github.com/beathan/django-akamai">https://github.com/beathan/django-akamai</a> for inspiring the code.</p>
 
-<h2>Credentials</h2>
+<h2>
+<a name="credentials" class="anchor" href="#credentials"><span class="octicon octicon-link"></span></a>Credentials</h2>
 
 <p>Credentials can be provided in 1 of 3 ways:</p>
 
@@ -42,7 +43,8 @@
 <li>A <code>.akamai</code> config file in the user's home directory. <a href="https://github.com/dryan/python-ccuapi/blob/master/.akamai.sample">(Sample config included as .akamai.sample)</a>
 </li>
 <li>Passing <code>username</code> and <code>password</code> kwargs to ccuapi.purge.PurgeRequest on initialization.</li>
-</ol><h2>Email Notifications</h2>
+</ol><h2>
+<a name="email-notifications" class="anchor" href="#email-notifications"><span class="octicon octicon-link"></span></a>Email Notifications</h2>
 
 <p>One or more comma-separated email addresses may be set to receive notifications when a content purge is complete. These are provided in 1 of 3 ways:</p>
 
@@ -50,7 +52,8 @@
 <li>AKAMAI_NOTIFY_EMAIL environment variable.</li>
 <li>In the <code>.akamai</code> config file.</li>
 <li>Passing <code>email</code> kwarg to ccuapi.purge.PurgeRequest on initialization.</li>
-</ol><h2>Usage</h2>
+</ol><h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
 
 <pre><code>from ccuapi.purge import PurgeRequest
 purger  =   PurgeRequest()
@@ -58,7 +61,8 @@ purger.add('http://domain.com') # this can be a string, list of strings, Django 
 results =   purger.purge() # returns a list of responses from Akamai, 1 per 100 URLs sent
 </code></pre>
 
-<h2>Command Line Usage</h2>
+<h2>
+<a name="command-line-usage" class="anchor" href="#command-line-usage"><span class="octicon octicon-link"></span></a>Command Line Usage</h2>
 
 <pre><code>ccu_purge http://domain.com
 </code></pre>
@@ -81,7 +85,7 @@ results =   purger.purge() # returns a list of responses from Akamai, 1 per 100 
           </script>
           <script type="text/javascript">
             try {
-              var pageTracker = _gat._getTracker("UA-3625251-4");
+              var pageTracker = _gat._getTracker("UA-3625251-12");
             pageTracker._trackPageview();
             } catch(err) {}
           </script>
