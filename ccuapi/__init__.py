@@ -3,7 +3,7 @@ import os,sys,ConfigParser
 django_settings =   False
 try:
     from django.conf import settings as django_settings
-except ImportError:
+except:
     pass
 
 class AkamaiException(Exception):
@@ -21,7 +21,7 @@ if django_settings:
         AKAMAI_USERNAME     =   getattr(django_settings, 'AKAMAI_USERNAME', AKAMAI_USERNAME)
         AKAMAI_PASSWORD     =   getattr(django_settings, 'AKAMAI_PASSWORD', AKAMAI_PASSWORD)
         AKAMAI_NOTIFY_EMAIL =   getattr(django_settings, 'AKAMAI_NOTIFY_EMAIL', AKAMAI_NOTIFY_EMAIL)
-    except ImportError:
+    except:
         pass # this isn't being run inside a Django environment
 
 

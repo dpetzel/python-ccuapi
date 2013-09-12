@@ -7,7 +7,7 @@ from suds.xsd import doctor
 QuerySet    =   None
 try:
     from django.db.models.query import QuerySet
-except ImportError:
+except:
     pass
 
 class PurgeRequest(object):
