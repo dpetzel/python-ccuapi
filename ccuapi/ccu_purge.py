@@ -1,13 +1,16 @@
 #!/usr/bin/env python
 import ccuapi, optparse, sys, os
 
+PURGE_TYPES =   ['arl', 'cpcode']
+
 parser      =   optparse.OptionParser()
-parser.add_option('-p', '--production', dest = 'production', action = "store_true", default = True, help = "Invalidate the production property")
-parser.add_option('-s', '--staging', dest = 'production', action = 'store_false', default = False, help = "Invalidate the staging property")
-parser.add_option('-u', '--urls', help = "Path to a file of URLs to purge, one per line")
-parser.add_option('-e', '--email', help = "Email addresses (comma-separated) to notify when purge is complete")
-parser.add_option('--username', help = "Akamai username to use")
-parser.add_option('--password', help = "Akamai password to use")
+parser.add_option('-p', '--production', dest = 'production', action = "store_true", default = True, help = "Invalidate the production property.")
+parser.add_option('-s', '--staging', dest = 'production', action = 'store_false', default = False, help = "Invalidate the staging property.")
+parser.add_option('-u', '--urls', help = "Path to a file of URLs or CP Codes to purge, one per line.")
+parser.add_option('-e', '--email', help = "Email addresses (comma-separated) to notify when purge is complete.")
+parser.add_option('--type', help = "The type of purge to perform. Choose from (%s)." % ", ".join(PURGE_TYPES), choices = PURGE_TYPES, default = 'arl', type = 'choice')
+parser.add_option('--username', help = "Akamai username to use.")
+parser.add_option('--password', help = "Akamai password to use.")
 
 opts, args  =   parser.parse_args()
 urls        =   []
@@ -20,7 +23,7 @@ if not len(urls) and len(args):
     urls    =   args
     
 if not len(urls):
-    print "You must specify at least one URL to purge."
+    print "You must specify at least one URL or CP Code to purge."
     sys.exit(os.EX_NOINPUT)
     
 if opts.email:
