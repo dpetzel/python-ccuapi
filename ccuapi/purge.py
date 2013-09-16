@@ -12,9 +12,12 @@ except:
 
 class PurgeRequest(object):
     
-    def __init__(self, username = AKAMAI_USERNAME, password = AKAMAI_PASSWORD, email = AKAMAI_NOTIFY_EMAIL, options = None, urls = None, wsdl = None):
+    def __init__(self, username = AKAMAI_USERNAME, password = AKAMAI_PASSWORD, email = AKAMAI_NOTIFY_EMAIL, options = None, urls = None, wsdl = None, kind = None, domain = None):
         
         self.wsdl   =   wsdl
+        self.type   =   kind
+        self.domain =   domain
+        assert self.type in ['arl', 'cpcode'], "%s is not a valid purge type. Must be arl or cpcode." % self.type
         if not self.wsdl:
             self.wsdl       =   os.path.join(os.path.dirname(os.path.abspath(__file__)), 'ccuapi-axis.wsdl')
             imp             =   doctor.Import('http://schemas.xmlsoap.org/soap/encoding/')
@@ -32,8 +35,8 @@ class PurgeRequest(object):
         self.options    =   {
             'email-notification-name':  self.email,
             'action':                   'remove',
-            'type':                     'arl',
-            'domain':                   'production',
+            'type':                     self.type,
+            'domain':                   self.domain,
         }
         if options:
             self.options.update(options)
