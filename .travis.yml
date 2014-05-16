@@ -7,6 +7,9 @@ install:
   - "pip install -r requirements_dev.txt"
 # command to run tests
 script:
-  - pep8
-  - pylint
+  - pep8 --verbose --show-pep8 ccuapi
+  - pylint ccuapi
   - nosetests ccuapi
+
+env: AKAMAI_USERNAME=my_user
+env: AKAMAI_PASSWORD=my_password
