@@ -7,7 +7,6 @@ import json
 
 from httmock import HTTMock, all_requests
 
-from . import AKAMAI_API_HOST
 from .purge import PurgeRequest
 
 from .exceptions import AkamaiAuthorizationException
