@@ -9,6 +9,6 @@ install:
 script:
   - pep8 --verbose --show-pep8 ccuapi
   - pylint ccuapi
-  - nosetests ccuapi
+  - nosetests -v ccuapi
 
 env: AKAMAI_USERNAME=my_user AKAMAI_PASSWORD=my_password
