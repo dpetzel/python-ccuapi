@@ -11,5 +11,4 @@ script:
   - pylint ccuapi
   - nosetests ccuapi
 
-env: AKAMAI_USERNAME=my_user
-env: AKAMAI_PASSWORD=my_password
+env: AKAMAI_USERNAME=my_user AKAMAI_PASSWORD=my_password
