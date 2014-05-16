@@ -3,7 +3,7 @@ python-ccuapi
 
 Python wrapper around Akamai ccuapi
 
-Hat tip to https://github.com/beathan/django-akamai for inspiring the code.
+Hat tip to https://github.com/beathan/django-akamai for inspiring the original code.
 
 ## Credentials
 
@@ -15,7 +15,8 @@ Credentials can be provided in 1 of 3 ways:
 
 ## Email Notifications
 
-One or more comma-separated email addresses may be set to receive notifications when a content purge is complete. These are provided in 1 of 3 ways:
+One or more comma-separated email addresses may be set to receive notifications
+when a content purge is complete. These are provided in 1 of 3 ways:
 
 1. AKAMAI_NOTIFY_EMAIL environment variable.
 2. In the `.akamai` config file.
@@ -25,8 +26,8 @@ One or more comma-separated email addresses may be set to receive notifications 
 
 	from ccuapi.purge import PurgeRequest
 	purger	= 	PurgeRequest()
-	purger.add('http://domain.com') # this can be a string, list of strings, Django QuerySet or Django object with the `get_absolute_url` method defined
-	results	= 	purger.purge() # returns a list of responses from Akamai, 1 per 100 URLs sent
+	purger.add('http://domain.com') # this can be a string, or list of strings
+	results	= 	purger.purge() # returns the status of the request
 	
 ## Command Line Usage
 
@@ -35,17 +36,8 @@ One or more comma-separated email addresses may be set to receive notifications 
 Run `ccu_purge -h` for additional options.
 
 ## Using a proxy server?
+ccuapi_purge will honor the standard proxy environment variables so if you
+are running behind a proxy export the proper environment variables:
 
-If you're using this library on a server that uses an http/https proxy, you'll likely hit  `Connection Timeout` issues
-because suds ignores the environment proxy variables, as [described here](http://stackoverflow.com/questions/12414600/suds-ignoring-proxy-setting).
-
-One simple solution:
-
-    #Hat tip: http://stackoverflow.com/questions/12414600/suds-ignoring-proxy-setting
-    from suds.transport.http import HttpTransport as SudsHttpTransport
-    class EnvProxyHonoringTransport(SudsHttpTransport):
-        def u2handlers(self):
-            return []
-
-    purger = PurgeRequest(...)
-    purger.client.set_options(transport = EnvProxyHonoringTransport())
+    $ export HTTP_PROXY="http://10.10.1.10:8080"
+    $ export HTTPS_PROXY="http://10.10.1.10:8080"
