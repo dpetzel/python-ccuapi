@@ -1,6 +1,5 @@
 # Requirements needed for development and testing
 nose
 pylint
-ipdbplugin
 httmock
 pep8
