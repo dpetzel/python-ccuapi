@@ -30,13 +30,13 @@ def parse_dependency_links(file_name):
 
 setup(
     name                    =   'ccuapi',
-    version                 =   '0.5.0',
+    version                 =   '1.0.0',
     description             =   'Python wrapper around Akamai\'s Content Control Utility API',
-    author                  =   'Daniel Ryan',
-    author_email            =   'dryan@dryan.com',
-    url                     =   'https://github.com/dryan/python-ccuapi',
+    author                  =   'David Petzel',
+    author_email            =   'david.petzel@disney.com',
+    url                     =   'https://github.com/dpetzel/python-ccuapi',
     packages                =   find_packages(),
-    long_description        =   open('README', 'r').read(),
+    long_description        =   open('README.rst', 'r').read(),
     license                 =   'BSD 3 Clause License',
     zip_safe                =   False,
     include_package_data    =   True,
