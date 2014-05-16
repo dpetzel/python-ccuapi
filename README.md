@@ -1,6 +1,8 @@
 python-ccuapi
 =============
 
+[![Build Status](https://travis-ci.org/dpetzel/python-ccuapi.svg?branch=master)](https://travis-ci.org/dpetzel/python-ccuapi)
+
 Python wrapper around Akamai ccuapi
 
 Hat tip to https://github.com/beathan/django-akamai for inspiring the original code.
