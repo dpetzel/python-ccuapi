@@ -62,8 +62,8 @@ are running behind a proxy export the proper environment variables:
 Change Log
 ----------
 
-1.0.0 05/15/2014
-~~~~~~~~~~~~~~~~
+1.0.0 (05/15/2014)
+~~~~~~~~~~~~~~~~~~
 This versions marks a fairly significant overhaul to convert to Akamai's REST
 based API. There some backward incompatible changes so be sure to review the
 list of changes below:
