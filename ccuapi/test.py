@@ -5,7 +5,7 @@ Unit tests for python ccuapi
 from unittest import TestCase
 import json
 
-from httmock import HTTMock, urlmatch
+from httmock import HTTMock, all_requests
 
 from . import AKAMAI_API_HOST
 from .purge import PurgeRequest
@@ -167,8 +167,7 @@ class CcuapiTest(TestCase):
 
 
 # pylint: disable=unused-argument, bad-continuation
-@urlmatch(netloc=AKAMAI_API_HOST, path='/ccu/v2/queues/default',
-          method='GET')
+@all_requests
 def mock_lookup_queue_length(url, request):
     """
     Mocks an API call to check the queue length
@@ -185,8 +184,7 @@ def mock_lookup_queue_length(url, request):
             }
 
 
-@urlmatch(netloc=AKAMAI_API_HOST, path='/ccu/v2/queues/default',
-          method='POST')
+@all_requests
 def mock_purge_success(url, request):
     """
     Mock a success Purge request
@@ -206,8 +204,7 @@ def mock_purge_success(url, request):
             }
 
 
-@urlmatch(netloc=AKAMAI_API_HOST, path='/ccu/v2/queues/default',
-          method='POST')
+@all_requests
 def mock_purge_unauth_url(url, request):
     """
     Mock a purge request in which the credentials are valid, but the
@@ -226,8 +223,7 @@ def mock_purge_unauth_url(url, request):
             }
 
 
-@urlmatch(netloc=AKAMAI_API_HOST, path='/ccu/v2/queues/default',
-          method='POST')
+@all_requests
 def mock_purge_bad_creds(url, request):
     """
     Mocks a response of a purge issued with invalid credentials. In this
@@ -245,8 +241,7 @@ def mock_purge_bad_creds(url, request):
             }
 
 
-@urlmatch(netloc=AKAMAI_API_HOST, path='/ccu/v2/purges/1234-456-7890',
-          method='GET')
+@all_requests
 def mock_status_1234(url, request):
     """
     Mock a status lookup for a purge request with an id of 1234...
@@ -272,8 +267,7 @@ def mock_status_1234(url, request):
             }
 
 
-@urlmatch(netloc=AKAMAI_API_HOST, path='/ccu/v2/purges/987',
-          method='GET')
+@all_requests
 def mock_status_987(url, request):
     """
     Mock a status lookup for a purge request with an id of 987
