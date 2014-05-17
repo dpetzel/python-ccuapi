@@ -18,6 +18,7 @@ script:
       --with-xunit
       --xunit-file=shippable/testresults/nosetests.xml
       --with-coverage
+      --cover-package ccuapi
       --cover-branches
       --cover-xml
       --cover-xml-file=shippable/codecoverage/coverage.xml
