@@ -6,7 +6,15 @@ that API in the form of Python objects
 """
 
 import os
-import ConfigParser
+import sys
+
+# Handle the fact that ConfigParser was renamed to configparser in PY3
+# pylint: disable=import-error
+try:
+    import configparser
+except ImportError:
+    import ConfigParser as configparser
+# pylint enable=import-error
 
 from .exceptions import AkamaiConfigException
 
@@ -17,7 +25,7 @@ AKAMAI_API_HOST = os.environ.get('AKAMAI_API_HOST',
                                  'api.ccu.akamai.com')
 
 if not AKAMAI_USERNAME or not AKAMAI_PASSWORD:
-    config = ConfigParser.SafeConfigParser()  # pylint: disable=invalid-name
+    config = configparser.SafeConfigParser()  # pylint: disable=invalid-name
     if os.path.exists(os.path.expanduser('~/.akamai')):
         config.readfp(open(os.path.expanduser('~/.akamai')))
         if config.has_section('Credentials'):
