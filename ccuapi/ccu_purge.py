@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Comand line runner/interface into the purge module
+Command line interface to Akamai's CCU API
 """
 
 
@@ -9,13 +9,14 @@ def main():
     """
     Main entry point for CLI interactions
     """
-    import optparse
+    import optparse  # pylint: disable=deprecated-module
     import sys
     import os
     import logging
 
     from .purge import PurgeRequest
     from .exceptions import AkamaiAuthorizationException
+    from .exceptions import AkamaiCredentialException
 
     parser = optparse.OptionParser()
     parser.add_option('-d', '--domain',
@@ -59,7 +60,7 @@ def main():
         urls = args
 
     if not len(urls):
-        print "You must specify at least one URL or CP Code to purge."
+        logger.error("You must specify at least one URL or CP Code to purge.")
         sys.exit(os.EX_NOINPUT)
 
     if opts.email:
@@ -83,7 +84,10 @@ def main():
             " purge one ore more URLs. It appears your username and password"
             " are correct, however you may not have permissions to purge"
             " one or more URLs/CP Codes.")
-        exit(1)
+        sys.exit(os.EX_NOPERM)
+    except AkamaiCredentialException:
+        logger.error("You failed to supply a valid user name or password.")
+        sys.exit(os.EX_CONFIG)
 
     if purger.http_status == 201:
         time_until_complete = purger.estimated_seconds / 60

@@ -122,7 +122,7 @@ class PurgeRequest(object):
         if isinstance(urls, list):
             for url in urls:
                 self.urls.add(url)
-        elif isinstance(urls, basestring):
+        elif isinstance(urls, str):
             self.urls.add(urls)
         else:
             raise TypeError("urls must be a string, or list of strings")
