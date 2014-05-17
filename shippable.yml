@@ -14,11 +14,11 @@ before_script:
 script:
   - pep8 --verbose --show-pep8 ccuapi
   - pylint ccuapi
-  - nosetests -v ccuapi \
-      --with-xunit \
-      --xunit-file=shippable/testresults/nosetests.xml \
-      --with-coverage \
-      --cover-xml \
+  - nosetests -v ccuapi
+      --with-xunit
+      --xunit-file=shippable/testresults/nosetests.xml
+      --with-coverage
+      --cover-xml
       --cover-xml-file=shippable/codecoverage/coverage.xml
 
 env: AKAMAI_USERNAME=my_user AKAMAI_PASSWORD=my_password
