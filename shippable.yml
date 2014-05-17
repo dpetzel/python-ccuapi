@@ -1,0 +1,24 @@
+language: python
+python:
+  - "2.7"
+  - "3.2"
+  - "3.3"
+# command to install dependencies
+install:
+  - "pip install -r requirements.txt"
+  - "pip install -r requirements_dev.txt"
+
+before_script:
+  - mkdir -p shippable/codecoverage shippable/testresults
+# command to run tests
+script:
+  - pep8 --verbose --show-pep8 ccuapi
+  - pylint ccuapi
+  - nosetests -v ccuapi \
+      --with-xunit \
+      --xunit-file=shippable/testresults/nosetests.xml \
+      --with-coverage \
+      --cover-xml \
+      --cover-xml-file=shippable/codecoverage/coverage.xml
+
+env: AKAMAI_USERNAME=my_user AKAMAI_PASSWORD=my_password

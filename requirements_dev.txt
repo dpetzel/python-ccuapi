@@ -3,3 +3,4 @@ nose
 pylint
 httmock
 pep8
+coverage
