@@ -3,6 +3,8 @@ python-ccuapi
 
 .. image:: https://travis-ci.org/dpetzel/python-ccuapi.svg?branch=master
     :target: https://travis-ci.org/dpetzel/python-ccuapi
+.. image:: https://api.shippable.com/projects/5376cb16a5c0d1f801e953ae/badge/master
+    :target: https://www.shippable.com/projects/5376cb16a5c0d1f801e953ae
 
 Python wrapper around Akamai ccuapi including a command line utility
 
