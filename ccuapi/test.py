@@ -3,7 +3,6 @@ Unit tests for python ccuapi
 """
 
 from unittest import TestCase
-import json
 
 from httmock import HTTMock, all_requests
 
@@ -174,12 +173,12 @@ def mock_lookup_queue_length(url, request):
     return {'status_code': 200,
             'content-type': 'application/json',
             'server': 'Apache',
-            'content': json.dumps({
+            'content': {
                 "supportId": "123456789",
                 "httpStatus": 200,
                 "detail": "The queue may take a minute to reflect new or "
                           "removed requests.",
-                "queueLength": 100})
+                "queueLength": 100}
             }
 
 
@@ -192,14 +191,14 @@ def mock_purge_success(url, request):
             'content-type': 'application/json',
             'server': 'Apache',
             'content-location': '/ccu/v2/purges/1234-456-7890',
-            'content': json.dumps({
+            'content': {
                 "estimatedSeconds": 420,
                 "progressUri": "/ccu/v2/purges/1234-456-7890",
                 "purgeId": "1234-456-7890",
                 "supportId": "123456789",
                 "httpStatus": 201,
                 "detail": "Request accepted.",
-                "pingAfterSeconds": 420})
+                "pingAfterSeconds": 420}
             }
 
 
@@ -212,13 +211,13 @@ def mock_purge_unauth_url(url, request):
     return {'status_code': 403,
             'content-type': 'application/json',
             'server': 'Apache',
-            'content': json.dumps({
+            'content': {
                 "supportId": "123456789",
                 "title": "unauthorized arl",
                 "httpStatus": 403,
                 "detail": "http://www.example.com/bogus",
                 "describedBy": "https://api.ccu.akamai.com/ccu/v2/errors/"
-                               "unauthorized-arl"})
+                               "unauthorized-arl"}
             }
 
 
@@ -251,7 +250,7 @@ def mock_status_1234(url, request):
     return {'status_code': 200,
             'content-type': 'application/json',
             'server': 'Apache',
-            'content': json.dumps({
+            'content': {
                 "originalEstimatedSeconds": 420,
                 "progressUri": "/ccu/v2/purges/1234-456-7890",
                 "originalQueueLength": 0,
@@ -262,7 +261,7 @@ def mock_status_1234(url, request):
                 "submittedBy": "myself",
                 "purgeStatus": "In-Progress",
                 "submissionTime": "2014-05-10T20:50:36Z",
-                "pingAfterSeconds": 60})
+                "pingAfterSeconds": 60}
             }
 
 
@@ -274,7 +273,7 @@ def mock_status_987(url, request):
     return {'status_code': 200,
             'content-type': 'application/json',
             'server': 'Apache',
-            'content': json.dumps({
+            'content': {
                 "originalEstimatedSeconds": 420,
                 "progressUri": "/ccu/v2/purges/987",
                 "originalQueueLength": 0,
@@ -285,4 +284,4 @@ def mock_status_987(url, request):
                 "submittedBy": "myself",
                 "purgeStatus": "In-Progress",
                 "submissionTime": "2014-05-09T20:50:36Z",
-                "pingAfterSeconds": 60})}
+                "pingAfterSeconds": 60}}
