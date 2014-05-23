@@ -20,7 +20,7 @@ to Akamai.
 
 .. code-block:: bash
 
-    nosetests -v
+    env AKAMAI_USERNAME='user' env AKAMAI_PASSWORD='pwd' nosetests -v
 
 This will run through the unittests
 
@@ -28,7 +28,7 @@ Styling
 -------
 This project tries to adhere to PEP8 styling guidelines and leverages pylint
 for lint style checking. These checks can be run by simply invoking the
-`pylint ccuapi` from the root of the repo
+``pylint ccuapi`` from the root of the repo.
 
 CLI Running
 -----------

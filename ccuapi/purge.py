@@ -138,11 +138,14 @@ class PurgeRequest(object):
                    'objects': list(self.urls)}
         uri = '/ccu/v2/queues/default'
         rsp = self._call_api(uri, payload=payload)
+        # In addition to returning the response info
+        # use it to populate attributes on the request
+        # object, allowing callers to use either
         for key, value in rsp.json().items():
             key_name = camel_to_snake(key)
             setattr(self, key_name, value)
 
-        return self.status()
+        return rsp.json()
 
     def queue_length(self):
         """

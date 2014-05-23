@@ -63,6 +63,12 @@ are running behind a proxy export the proper environment variables:
 
 Change Log
 ----------
+1.1.2 (05/23/2014)
+~~~~~~~~~~~~~~~~~~
+
+* Fix bug where purge method was returning the results of a status call
+  rather than the actual results of the purge
+
 1.1.1 (05/22/2014)
 ~~~~~~~~~~~~~~~~~~
 
