@@ -63,6 +63,11 @@ are running behind a proxy export the proper environment variables:
 
 Change Log
 ----------
+1.1.1 (05/22/2014)
+~~~~~~~~~~~~~~~~~~
+
+* Fix entry point issue with CLI running
+
 1.1.0 (05/16/2014)
 ~~~~~~~~~~~~~~~~~~
 
