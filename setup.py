@@ -30,7 +30,7 @@ def parse_dependency_links(file_name):
 
 setup(
     name                    =   'ccuapi',
-    version                 =   '1.1.0',
+    version                 =   '1.1.1',
     description             =   'Python wrapper around Akamai\'s Content Control Utility API',
     author                  =   'David Petzel',
     author_email            =   'david.petzel@disney.com',
@@ -44,7 +44,7 @@ setup(
     dependency_links        =   parse_dependency_links('requirements.txt'),
     entry_points            =   {
         'console_scripts':  [
-            'ccu_purge = ccuapi.ccu_purge:__main__', 
+            'ccu_purge = ccuapi.ccu_purge:main',
         ]
     }
 )

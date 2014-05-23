@@ -176,7 +176,7 @@ class PurgeRequest(object):
         if purge_id is None:
             raise AkamaiStatusRequestWithoutPurge(
                 "You need to call the purge method first, or supply a value"
-                "for purge_id")
+                " for purge_id")
 
         return self._call_api(uri, method='GET').json()
 
