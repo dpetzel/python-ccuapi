@@ -10,7 +10,7 @@ Python wrapper around Akamai ccuapi including a command line utility
 
 Requirements
 ------------
-Python 2.7, 3.2, 3.3, and 3.4 are currently required. There are currently no plans
+Python 2.7, 3.2, 3.3, and 3.4 are currently supported. There are currently no plans
 to support anything older than Python 2.7
 
 * `Requests <http://docs.python-requests.org/en/latest/>`_
