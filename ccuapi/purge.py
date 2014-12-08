@@ -22,11 +22,21 @@ import re
 class PurgeRequest(object):
     """
     Represents a request to purge content from the Akamai network
+
+    certificate - controls how SSL certification verification is performed,
+                  If True, perform standard cert verification.
+                  If False, skip cert verification.
+                  certificate can also be to a path of to a CA_BUNDLE file
+                  to use for certification. This argument is passed as
+                  verify argument to request.get() and requests,post()
+                  functions. See Requests library documentation for more
+                  information.
     """
     # pylint: disable=too-many-arguments
     def __init__(self, username=AKAMAI_USERNAME, password=AKAMAI_PASSWORD,
                  email=AKAMAI_NOTIFY_EMAIL, options=None, urls=None,
-                 kind=None, domain='production', api_host=None):
+                 kind=None, domain='production', api_host=None,
+                 certificate=True):
 
         # Start by validating input
         if kind not in ['arl', 'cpcode']:
@@ -51,6 +61,8 @@ class PurgeRequest(object):
             self.api_host = AKAMAI_API_HOST
         else:
             self.api_host = api_host
+
+        self.certificate = certificate
 
         self.type = kind
         self.domain = domain
@@ -103,9 +115,10 @@ class PurgeRequest(object):
             payload = json.dumps(payload)
 
         if method == 'GET':
-            rsp = api_client.get(api_url)
+            rsp = api_client.get(api_url, verify=self.certificate)
         else:
-            rsp = api_client.post(api_url, data=payload)
+            rsp = api_client.post(api_url, data=payload,
+                                  verify=self.certificate)
 
         if rsp.status_code == 401:
             raise AkamaiAuthenticationException(
