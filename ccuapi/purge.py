@@ -26,7 +26,7 @@ class PurgeRequest(object):
     # pylint: disable=too-many-arguments
     def __init__(self, username=AKAMAI_USERNAME, password=AKAMAI_PASSWORD,
                  email=AKAMAI_NOTIFY_EMAIL, options=None, urls=None,
-                 kind=None, domain='production'):
+                 kind=None, domain='production', api_host=None):
 
         # Start by validating input
         if kind not in ['arl', 'cpcode']:
@@ -46,6 +46,11 @@ class PurgeRequest(object):
         self.password = password
         if not password:
             raise AkamaiCredentialException('Password not provided')
+
+        if api_host is None:
+            self.api_host = AKAMAI_API_HOST
+        else:
+            self.api_host = api_host
 
         self.type = kind
         self.domain = domain
@@ -89,7 +94,7 @@ class PurgeRequest(object):
                 Pass a dictionary when passing key/value pairs, or a plain
                 string if passing raw post data
         """
-        api_url = "https://{0}{1}".format(AKAMAI_API_HOST, path)
+        api_url = "https://{0}{1}".format(self.api_host, path)
         api_client = requests.Session()
         api_client.auth = (self.username, self.password)
         api_client.headers.update({'Content-Type': 'application/json'})
