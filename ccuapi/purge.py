@@ -22,11 +22,21 @@ import re
 class PurgeRequest(object):
     """
     Represents a request to purge content from the Akamai network
+
+    certificate - controls how SSL certification verification is performed,
+                  If True, perform standard cert verification.
+                  If False, skip cert verification.
+                  certificate can also be to a path of to a CA_BUNDLE file
+                  to use for certification. This argument is passed as
+                  verify argument to request.get() and requests,post()
+                  functions. See Requests library documentation for more
+                  information.
     """
     # pylint: disable=too-many-arguments
     def __init__(self, username=AKAMAI_USERNAME, password=AKAMAI_PASSWORD,
                  email=AKAMAI_NOTIFY_EMAIL, options=None, urls=None,
-                 kind=None, domain='production'):
+                 kind=None, domain='production', api_host=None,
+                 certificate=True):
 
         # Start by validating input
         if kind not in ['arl', 'cpcode']:
@@ -46,6 +56,13 @@ class PurgeRequest(object):
         self.password = password
         if not password:
             raise AkamaiCredentialException('Password not provided')
+
+        if api_host is None:
+            self.api_host = AKAMAI_API_HOST
+        else:
+            self.api_host = api_host
+
+        self.certificate = certificate
 
         self.type = kind
         self.domain = domain
@@ -89,7 +106,7 @@ class PurgeRequest(object):
                 Pass a dictionary when passing key/value pairs, or a plain
                 string if passing raw post data
         """
-        api_url = "https://{0}{1}".format(AKAMAI_API_HOST, path)
+        api_url = "https://{0}{1}".format(self.api_host, path)
         api_client = requests.Session()
         api_client.auth = (self.username, self.password)
         api_client.headers.update({'Content-Type': 'application/json'})
@@ -98,9 +115,10 @@ class PurgeRequest(object):
             payload = json.dumps(payload)
 
         if method == 'GET':
-            rsp = api_client.get(api_url)
+            rsp = api_client.get(api_url, verify=self.certificate)
         else:
-            rsp = api_client.post(api_url, data=payload)
+            rsp = api_client.post(api_url, data=payload,
+                                  verify=self.certificate)
 
         if rsp.status_code == 401:
             raise AkamaiAuthenticationException(
