@@ -92,13 +92,12 @@ def main():
     if purger.http_status == 201:
         time_until_complete = purger.estimated_seconds / 60
         logger.info(
-            "{0} URL(s) or CPcode(s) will be purged within {1} minutes."
-            " If you have any issues refer to Akamai support ID {2}".format(
-                len(purger.urls), time_until_complete, purger.support_id
-            ))
+            "%s URL(s) or CPcode(s) will be purged within %s minutes."
+            " If you have any issues refer to Akamai support ID %s",
+            len(purger.urls), time_until_complete, purger.support_id)
     else:
         reason = getattr(purger, 'detail', 'unknown')
-        logger.error("Purge failed with reason: {0}".format(reason))
+        logger.error("Purge failed with reason: %s", reason)
         exit(1)
 
 if __name__ == "__main__":
