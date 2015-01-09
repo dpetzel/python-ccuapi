@@ -32,6 +32,11 @@ def main():
                       " 'arl' or 'cpcode'")
     parser.add_option('--username', help="Akamai username to use.")
     parser.add_option('--password', help="Akamai password to use.")
+    parser.add_option('--api-host',
+                      help='Overrides the host where purge requests are send.')
+    parser.add_option("--api-host-certificate",
+                      help="Path to CA_BUNDLE file to use for SSL "
+                           "certification, when making requests to API host")
     parser.add_option("-v", '--verbose', action="store_true", dest="verbose")
 
     opts, args = parser.parse_args()
@@ -69,6 +74,10 @@ def main():
         kwargs['username'] = opts.username
     if opts.password:
         kwargs['password'] = opts.password
+    if opts.api_host:
+        kwargs['api_host'] = opts.api_host
+    if opts.api_host_certificate:
+        kwargs['certificate'] = opts.api_host_certificate
     if opts.type:
         kwargs['kind'] = opts.type
     if opts.domain:
