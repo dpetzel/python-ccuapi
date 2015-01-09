@@ -64,9 +64,9 @@ Change Log
 1.2.0 (01/09/2015)
 ~~~~~~~~~~~~~~~~~~
 
-* Added support for altering the API endpoint. Thanks [elmirjagudin](https://github.com/elmirjagudin)
-* Added support for using a custom certificate bundle. Thanks [elmirjagudin](https://github.com/elmirjagudin)
-* Added support for disabling SSL verification. Thanks [elmirjagudin](https://github.com/elmirjagudin)
+* Added support for altering the API endpoint. Thanks elmirjagudin
+* Added support for using a custom certificate bundle. Thanks elmirjagudin
+* Added support for disabling SSL verification. Thanks elmirjagudin
 
 1.1.2 (05/23/2014)
 ~~~~~~~~~~~~~~~~~~
