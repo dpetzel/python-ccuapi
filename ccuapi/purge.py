@@ -4,7 +4,8 @@ CCU API.
 """
 
 from . import AKAMAI_USERNAME, AKAMAI_PASSWORD, AKAMAI_NOTIFY_EMAIL
-from . import AKAMAI_API_HOST
+from . import AKAMAI_API_HOST, AKAMAI_HTTPS_TIMEOUT
+
 
 from .exceptions import AkamaiPurgeTypeException
 from .exceptions import AkamaiCredentialException
@@ -31,12 +32,16 @@ class PurgeRequest(object):
                   verify argument to request.get() and requests,post()
                   functions. See Requests library documentation for more
                   information.
+    https_timeout - The https timeout setting while making API requests.
+                  (float or tuple) How long to wait for the server to send data
+                  before giving up, as a float, or a (connect timeout,
+                  read timeout) tuple.
     """
     # pylint: disable=too-many-arguments
     def __init__(self, username=AKAMAI_USERNAME, password=AKAMAI_PASSWORD,
                  email=AKAMAI_NOTIFY_EMAIL, options=None, urls=None,
                  kind=None, domain='production', api_host=None,
-                 certificate=True):
+                 certificate=True, https_timeout=None):
 
         # Start by validating input
         if kind not in ['arl', 'cpcode']:
@@ -63,6 +68,12 @@ class PurgeRequest(object):
             self.api_host = api_host
 
         self.certificate = certificate
+
+        if https_timeout is None:
+            self.https_timeout = AKAMAI_HTTPS_TIMEOUT
+        else:
+            self.https_timeout = https_timeout
+
 
         self.type = kind
         self.domain = domain
@@ -115,10 +126,12 @@ class PurgeRequest(object):
             payload = json.dumps(payload)
 
         if method == 'GET':
-            rsp = api_client.get(api_url, verify=self.certificate)
+            rsp = api_client.get(api_url, verify=self.certificate,
+                                 timeout=self.https_timeout)
         else:
             rsp = api_client.post(api_url, data=payload,
-                                  verify=self.certificate)
+                                  verify=self.certificate,
+                                  timeout=self.https_timeout)
 
         if rsp.status_code == 401:
             raise AkamaiAuthenticationException(
