@@ -23,6 +23,7 @@ AKAMAI_PASSWORD = os.environ.get('AKAMAI_PASSWORD', None)
 AKAMAI_NOTIFY_EMAIL = os.environ.get('AKAMAI_NOTIFY_EMAIL', None)
 AKAMAI_API_HOST = os.environ.get('AKAMAI_API_HOST',
                                  'api.ccu.akamai.com')
+AKAMAI_HTTPS_TIMEOUT = os.environ.get('AKAMAI_HTTPS_TIMEOUT', 34)
 
 if not AKAMAI_USERNAME or not AKAMAI_PASSWORD:
     config = configparser.SafeConfigParser()  # pylint: disable=invalid-name
