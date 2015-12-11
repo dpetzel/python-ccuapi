@@ -9,12 +9,12 @@ import os
 import sys
 
 # Handle the fact that ConfigParser was renamed to configparser in PY3
-# pylint: disable=import-error
+# pylint: disable=wrong-import-order
 try:
     import configparser
 except ImportError:
     import ConfigParser as configparser
-# pylint enable=import-error
+# pylint enable=wrong-import-order
 
 from .exceptions import AkamaiConfigException
 

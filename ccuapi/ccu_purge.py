@@ -84,7 +84,7 @@ def main():
         kwargs['domain'] = opts.domain
 
     try:
-        purger = PurgeRequest(**kwargs)  # pylint: disable=star-args
+        purger = PurgeRequest(**kwargs)  # pylint: disable=bad-option-value
         purger.add(urls)
         purger.purge()
     except AkamaiAuthorizationException:
