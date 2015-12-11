@@ -119,7 +119,7 @@ class PurgeRequest(object):
         api_client.auth = (self.username, self.password)
         api_client.headers.update({'Content-Type': 'application/json'})
 
-        if payload is not None and type(payload) == dict:
+        if isinstance(payload, dict):
             payload = json.dumps(payload)
 
         if method == 'GET':
