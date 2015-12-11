@@ -74,7 +74,6 @@ class PurgeRequest(object):
         else:
             self.https_timeout = https_timeout
 
-
         self.type = kind
         self.domain = domain
         self.username = username
