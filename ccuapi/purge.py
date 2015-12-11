@@ -2,10 +2,12 @@
 This module holds the class(es) required to interact with the Akamai
 CCU API.
 """
+import re
+import json
+import requests
 
 from . import AKAMAI_USERNAME, AKAMAI_PASSWORD, AKAMAI_NOTIFY_EMAIL
 from . import AKAMAI_API_HOST, AKAMAI_HTTPS_TIMEOUT
-
 
 from .exceptions import AkamaiPurgeTypeException
 from .exceptions import AkamaiCredentialException
@@ -13,10 +15,6 @@ from .exceptions import AkamaiAuthenticationException
 from .exceptions import AkamaiAuthorizationException
 from .exceptions import AkamaiArlPurgeWithoutUrls
 from .exceptions import AkamaiStatusRequestWithoutPurge
-
-import requests
-import json
-import re
 
 
 # pylint: disable=too-many-instance-attributes
