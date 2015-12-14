@@ -13,7 +13,7 @@ import sys
 try:
     import configparser
 except ImportError:
-    import ConfigParser as configparser
+    import ConfigParser as configparser  # pylint: disable=import-error
 # pylint enable=wrong-import-order
 
 from .exceptions import AkamaiConfigException
