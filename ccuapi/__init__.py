@@ -15,6 +15,10 @@ try:
 except ImportError:
     import ConfigParser as configparser  # pylint: disable=import-error
 # pylint enable=wrong-import-order
+    # Handle the fact that readfp() was renamed to read_file() in PY3
+    configparser.SafeConfigParser.read_file = \
+        configparser.SafeConfigParser.readfp
+
 
 from .exceptions import AkamaiConfigException
 
@@ -28,7 +32,7 @@ AKAMAI_HTTPS_TIMEOUT = os.environ.get('AKAMAI_HTTPS_TIMEOUT', 34)
 if not AKAMAI_USERNAME or not AKAMAI_PASSWORD:
     config = configparser.SafeConfigParser()  # pylint: disable=invalid-name
     if os.path.exists(os.path.expanduser('~/.akamai')):
-        config.readfp(open(os.path.expanduser('~/.akamai')))
+        config.read_file(open(os.path.expanduser('~/.akamai')))
         if config.has_section('Credentials'):
             if config.has_option('Credentials', 'username'):
                 AKAMAI_USERNAME = config.get('Credentials', 'username')
