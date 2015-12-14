@@ -37,7 +37,7 @@ if not AKAMAI_USERNAME or not AKAMAI_PASSWORD:
             if config.has_option('Credentials', 'password'):
                 AKAMAI_PASSWORD = config.get('Credentials', 'password')
             else:
-                raise AkamaiConfigException('.akamai config missing username')
+                raise AkamaiConfigException('.akamai config missing password')
         else:
             raise AkamaiConfigException('.akamai config missing the'
                                         ' Credentials section')
