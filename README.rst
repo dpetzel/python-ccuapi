@@ -8,8 +8,8 @@ Python wrapper around Akamai ccuapi including a command line utility
 
 Requirements
 ------------
-Python 2.7, 3.3, and 3.4 are currently supported. There are currently no plans
-to support anything older than Python 2.7
+Python 2.7, 3.3, 3.4 and 3.5 are currently supported. There are currently no
+plans to support anything older than Python 2.7
 
 * `Requests <http://docs.python-requests.org/en/latest/>`_
 
@@ -61,6 +61,11 @@ are running behind a proxy export the proper environment variables:
 
 Change Log
 ----------
+1.2.1 (12/15/2015)
+~~~~~~~~~~~~~~~~~~
+
+* Added support for HTTPS socket timeouts when making Akamai API requests.
+
 1.2.0 (01/09/2015)
 ~~~~~~~~~~~~~~~~~~
 
